@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" v-show="show">
+  <div class="toast" v-show="isShow">
     <div >{{message}}</div>
   </div>
 </template>
@@ -12,11 +12,21 @@ export default {
       type:String,
       default:''
     },
-    show:{
+    isShow:{
       type:Boolean,
       default:false
     }
-  }
+  },
+  methods: {
+    show(message="默认信息",duration=2000){
+      this.isShow=true;
+      this.message=message
+      setTimeout(()=>{
+        this.isShow=false;
+        this.message=''
+      },duration)
+    }
+  },
 }
 </script>
 
@@ -29,5 +39,6 @@ export default {
   padding: 8px 10px;
   color: #fff;
   background-color: rgba(0,0,0,.5);
+  z-index: 999;
 }
 </style>
