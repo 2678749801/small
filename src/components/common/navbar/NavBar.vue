@@ -18,10 +18,13 @@ export default {
   line-height: 44px;
   height: 44px;
   text-align: center;
-  text-shadow: 0 1px 1px rgba(100,100,100, .4);
+  box-shadow: 0 1px 1px rgba(100,100,100, 0.1);
 }
-.left .right{
+.left {
   width: 60px;
+}
+.right{
+   width: 60px;
 }
 .center{
   flex: 1;

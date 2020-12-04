@@ -6,15 +6,14 @@
     class="tab-control" 
     @tabClick="tabClick" 
     ref="tabControl1" 
-    v-show="isTabFixed"
-    ></tab-control>
+    v-show="isTabFixed"></tab-control>
     <scroll class="content" 
     ref="scroll" 
     :probeType="3"
     @scroll="contentScroll"
     :pull-up-load="true"
     @pullingUp="loadMore">
-        <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
+    <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
     <home-recommed-view :recommends="recommends"/>
     <feature-view></feature-view>
     <tab-control :titles="titles"  @tabClick="tabClick" ref="tabControl2" ></tab-control>
@@ -62,6 +61,7 @@ export default {
         isShowBackTop:false,
         tabOffsetTop:0,
         isTabFixed:false,
+        saveY:0
       }
     },
   created() {
@@ -140,6 +140,18 @@ export default {
     })
     
   },
+  computed: {
+      // destroyed(){
+        
+      // },
+      activated() {
+        this.$refs.scroll.scroll.scrollTo(0,this.saveY,0)
+        this.$refs.scroll.refresh()
+      },
+      deactivated() {
+        this.saveY=this.$refs.scroll.getScrollY()
+      },
+    },
 }
 </script>
 
