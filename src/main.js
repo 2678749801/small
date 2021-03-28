@@ -12,7 +12,7 @@ Vue.use(toast)
     //解决移动端300毫秒延迟
 FastClick.attach(document.body)
 Vue.use(VueLazyLoad, {
-    loading: ''
+    loading: ''//可以设置未加载图片时 预先给别人看的图片 进行占位
 })
 new Vue({
     router,

@@ -73,7 +73,7 @@ export default {
     };
   },
   created() {
-    //请求多个数据
+    //请求多个数据 必须写成this 否则会调用引入的函数
     this.getHomeMultidata(); //created保留主要逻辑 具体逻辑放到methods里
     this.getHomeGoods("pop"); //一次请求三个数据
     this.getHomeGoods("new");
@@ -107,13 +107,13 @@ export default {
       };
     },
     swiperImageLoad() {
-      //获取tabcontrol 所有的组件都有￥el 用来获取组件的元素
+      //获取tabcontrol 所有的组件都有￥el 用来获取组件的元素 因为有图片加载 需要在图片加载完成在过去offsettop
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
     },
     tabClick(index) {
       switch (index) {
         case 0:
-          this.currentType = "pop";
+          this.currentType = "pop"; //没有break会case穿透 执行到下一个break
           break;
         case 1:
           this.currentType = "new";
@@ -143,20 +143,20 @@ export default {
     //图片加载完成的事件监听
     const refresh = this.debounce(this.$refs.scroll.refresh, 500);
     this.$bus.$on("itemImageLoad", () => {
-      refresh(); //加载完所有图片 再刷新更新高度 达到目的
+      refresh(); //监听goodlist中是否加载完所有图片 再刷新更新高度 达到目的
     });
+  },
+  activated() {
+    this.$refs.scroll.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.getScrollY();
+    this.$bus.$off; //取消全局监听
   },
   computed: {
     // destroyed(){
-
     // },
-    activated() {
-      this.$refs.scroll.scroll.scrollTo(0, this.saveY, 0);
-      this.$refs.scroll.refresh();
-    },
-    deactivated() {
-      this.saveY = this.$refs.scroll.getScrollY();
-    },
   },
 };
 </script>
@@ -166,6 +166,7 @@ export default {
   /* padding-top: 44px; */
   height: 100vh;
   position: relative;
+  /* 设置高度为100vh 当前视口的百分之100 */
 }
 .home-nav {
   background-color: var(--color-tint);
@@ -183,7 +184,7 @@ export default {
   z-index: 9; 
 } */
 .content {
-  height: calc(100% - 93px);
+  /* height: calc(100% - 93px); */
   overflow: hidden;
   position: absolute;
   top: 44px;

@@ -1,9 +1,9 @@
 <template>
   <div class="recommends">
-    <div v-for="item in recommends" class="recommend-item"> 
+    <div v-for="item in recommends" class="recommend-item">
       <a :href="item.link">
-        <img :src="item.image" alt="">
-        <div>{{item.title}}</div>
+        <img :src="item.image" alt="" />
+        <div>{{ item.title }}</div>
       </a>
     </div>
   </div>
@@ -11,20 +11,20 @@
 
 <script>
 export default {
-  name:'HomeRecommedView',
-  props:{
-    recommends:{
-      type:Array,
-      default(){
-        return[]
-      }
-    }
-  }
-}
+  name: "HomeRecommedView",
+  props: {
+    recommends: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>
-.recommends{
+.recommends {
   display: flex;
   text-align: center;
   width: 100%;
@@ -32,10 +32,10 @@ export default {
   padding: 15px 0 30px;
   border-bottom: 8px solid#eee;
 }
-.recommend-item{
+.recommend-item {
   flex: 1;
 }
-.recommend-item img{
+.recommend-item img {
   width: 65px;
   height: 65px;
 }

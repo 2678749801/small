@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       count: 0,
-      imagesLength: 0
+      imagesLength: 0,
     };
   },
   props: {
@@ -34,26 +34,25 @@ export default {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
   methods: {
     // imgLoad() {
     //   if (++this.count === this.imagesLength) {
     //     this.$emit("detailImageLoad");
     //   }
-      
+
     // }
-     imgLoad() {
-      this.$bus.$emit("detailImageLoad");
-    
-    }
+    imgLoad() {
+      this.$emit("detailImageLoad");
+    },
   },
   watch: {
     imagesInfo() {
       this.imagesLength = this.imagesInfo.detailImage[0].list.length;
-    }
-  }
+    },
+  },
 };
 </script>
 

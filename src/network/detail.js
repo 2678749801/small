@@ -10,10 +10,9 @@ export function getDetail(iid) {
 export function getRecommend() {
     return request({
         url: '/recommend',
-
     })
 }
-export class Goods {
+export class Goods {//将分散于各个数组的信息整合起来 整合成一个新的 创建一个类 将所需要的数组作为参数传递进来 然后组件引入这个类 将受到的数据传递进去 重新整合粗一个
     constructor(itemInfo, columns, services) {
         this.title = itemInfo.title
         this.desc = itemInfo.desc
